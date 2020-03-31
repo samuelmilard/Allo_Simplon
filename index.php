@@ -51,25 +51,33 @@ Partie salle !
 
 <div class="container">
   <form id="contact" action="traitement/insert-salle.php" method="post">
-    <h3><center>Form - Cinéma Insertion Salle</center></h3>
-    <h4><center>Exercice d'utilisation CRUD, Ajout dans une table simple, avec élément récupéré d'une autre table</center></h4>
+    <h3><center>USER - Nouvel Utilisateur</center></h3>
     <fieldset>
-      <input placeholder="Numero de la Salle" name="numero_salle" type="text" tabindex="6" required>
+      <input placeholder="Mot de passe" name="mdp" type="text" tabindex="8" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Capacité de la salle" name="capacite_salle" type="text" tabindex="7" required>
+      <input placeholder="Nom" name="nom" type="text" tabindex="9" required>
     </fieldset>
     <fieldset>
-           <select  name="id_cinema" tabindex="8" require >
+      <input placeholder="Prenom" name="prenom" type="text" tabindex="10" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Pseudo" name="pseudo" type="text" tabindex="11" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Mail" name="mail" type="text" tabindex="12" required>
+    </fieldset>
+    <fieldset>
+           <select  name="ID_user" tabindex="13" require >
             <?php
-                include ('include/connectBDD.php');
+                include ('connectBDD.php');
 
-                $req = $bdd->prepare(" SELECT id_cinema, nom_cinema FROM cinema ");
+                $req = $bdd->prepare(" SELECT ID_user, mdp, nom, prenom, pseudo, mail, FROM user ");
                 $req->execute();
 
                 while ( $donnees = $req->fetch() ){ ?>
 
-                  <option value="<?= $donnees['id_cinema']; ?>"> Nom du Cinéma : <?= $donnees['nom_cinema']; ?> | id du cinéma : <?= $donnees['id_cinema']; ?> </option>
+                  <option value="<?= $donnees['ID_user']; ?>"> Nom user : <?= $donnees['pseudo']; ?> | ID_user : <?= $donnees['ID_user']; ?> </option>
 
 
               <?php  }
@@ -103,10 +111,10 @@ Partie Équipement afiliation !
 
  <div class="container">
    <form id="contact" action="traitement/insert-equipement.php" method="post">
-     <h3><center>Ajouter Équipement</center></h3>
+     <h3><center>Ajouter Film</center></h3>
      <h4><center>Exercice d'utilisation CRUD, ajout dans une table simple</center></h4>
      <fieldset>
-       <input placeholder="Nom de L'équipement" name="nom_equipement" type="text" tabindex="8"  required autofocus>
+       <input placeholder="User" name="user" type="text" tabindex="14"  required autofocus>
      </fieldset>
      <fieldset>
        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Envoyer</button>
@@ -167,10 +175,3 @@ Partie Équipement afiliation !
 
 
 
-
-
-
-
-
-</body>
-</html>
